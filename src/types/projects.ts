@@ -1,4 +1,5 @@
 export type ProjectStatus = 'In Progress' | 'Progress' | 'Planning' | 'Completed' | 'On Hold';
+export type ProjectPriority = 'High' | 'Medium' | 'Low'
 
 export interface Project {
   id: string;
@@ -13,5 +14,6 @@ export interface Project {
   client: string;
   budget: string;
   startDate: string;
+  priority?: ProjectPriority;
   isStarred?: boolean;
 }

@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# 🚀 Taskora - Project Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Taskora** là một nền tảng quản lý công việc hiện đại, giúp người dùng theo dõi dự án, deadline và quản lý nhóm một cách trực quan. Dự án được xây dựng với tư duy "Component-Driven" và quản lý trạng thái thông minh qua URL.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Tech Stack
 
-## React Compiler
+Hệ thống được xây dựng trên nền tảng các công nghệ mạnh mẽ nhất 2026:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Core:** [React 18+](https://react.dev/) & [Vite](https://vitejs.dev/) 
+* **Language:** [TypeScript](https://www.typescriptlang.org/)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Routing:** [React Router v7](https://reactrouter.com/) 
+* **Components:** [Headless UI](https://headlessui.com/) & [Heroicons](https://heroicons.com/)
+* **Utilities:** `clsx`, `tailwind-merge`
 
-## Expanding the ESLint configuration
+## 📂 Cấu trúc thư mục
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── components/      # Các component dùng chung
+│   ├── shared/      # Sidebar, Header, SearchInput...
+│   ├── ui/          # Button, Badge, Avatar (Primitive UI)
+│   └── layouts/     # Định nghĩa khung trang (MainLayout, AuthLayout)
+├── features/        # Logic & Components theo tính năng (Project, Tasks)
+├── hooks/           # Custom hooks (useSearch, useProjectFilter)
+├── types/           # Định nghĩa TypeScript interfaces/types toàn cục
+├── utils/           # Helper functions (cn helper, formatters)
+└── views/           # Các trang chính (Dashboard, Projects Page)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Cài đặt & Chạy dự án
+1. Yêu cầu hệ thống
+* Node.js: v20.x trở lên
+* Package Manager: npm (đi kèm Node.js)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Thiết lập dự án
+# Clone dự án
+git clone [https://github.com/your-username/taskora.git](https://github.com/your-username/taskora.git)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+# Di chuyển vào thư mục dự án
+cd taskora
+
+# Cài đặt thư viện
+npm install
+
+3. Chạy dự án
+npm run dev

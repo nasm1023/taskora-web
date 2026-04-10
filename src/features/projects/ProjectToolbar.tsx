@@ -10,7 +10,7 @@ export const ProjectToolbar = () => {
   const { view, updateFilters } = useProjectFilters();
 
   return (
-    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 bg-white p-2 border border-slate-100 shadow-sm">
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5 bg-white p-2 border border-slate-100 shadow-sm">
       <div className="flex items-center gap-3 flex-1 w-full">
         <SearchInput />
         <Menu>
