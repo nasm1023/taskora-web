@@ -1,11 +1,14 @@
 import { Dialog, Transition, DialogPanel, TransitionChild } from '@headlessui/react';
-import { Fragment } from 'react';
-import { XMarkIcon, CalendarIcon } from '@heroicons/react/24/outline';
+import { Fragment, useState } from 'react';
+import { XMarkIcon, CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
 import type { Project } from '../../types/projects';
 import StatusBadge from '../../components/ui/StatusBadge';
 import { AvatarGroup } from '../../components/ui/AvatarGroup';
 import { InfoCard } from '../../components/ui/InfoCard';
 import { ProgressBar } from '../../components/ui/ProgressBar';
+import { Button } from '../../components/ui/Button';
+import { TabItem } from '../../components/ui/TabItem';
+import { TABS, type TabType } from '../../types/tab';
 
 interface Props {
   project: Project | null;
@@ -14,7 +17,28 @@ interface Props {
 }
 
 export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
+  const [activeTab, setActiveTab] = useState<TabType>('overview')
   if (!project) return null;
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'overview':
+        return (
+          <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <h3 className="text-xl font-bold mb-2">Project Description</h3>
+            <p className="text-slate-500 leading-relaxed">
+               {project.description}. Đây là thông tin chi tiết về dự án bao gồm các mục tiêu và tiến độ cụ thể.
+            </p>
+          </div>
+        );
+      case 'tasks':
+        return <div className="p-10 text-center text-slate-400">Danh sách Task sẽ hiển thị ở đây...</div>;
+      case 'team':
+        return <div className="p-10 text-center text-slate-400">Thông tin đội ngũ dự án...</div>;
+      default:
+        return <div className="p-10 text-center text-slate-400">Tính năng đang phát triển...</div>;
+    }
+  };
 
   return (
     <Transition show={isOpen} as={Fragment}>
@@ -50,7 +74,7 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
                 </button>
 
                 {/* Header Section */}
-                <div className="flex gap-6 mb-8">
+                <div className="flex gap-6 mb-8 rounded-lg">
                   <div className="w-1.5 h-16 bg-yellow-400 rounded-full" />
                   <div>
                     <h2 className="text-3xl font-bold text-slate-900">{project.name}</h2>
@@ -77,12 +101,36 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
                   } />
                 </div>
 
-                {/* Tabs Section (Mô phỏng) */}
-                <div className="border-t border-slate-100 pt-8">
-                   <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                      <h3 className="text-xl font-bold mb-2">Project Description</h3>
-                      <p className="text-slate-500">Detailed information about the project goes here...</p>
-                   </div>
+                {/* Tabs */}
+                <div className="mt-8 mb-6 bg-slate-100 p-1 rounded-xl inline-flex gap-1">
+                  {TABS.map((tab) => (
+                    <TabItem
+                      key={tab.id}
+                      icon={tab.icon}
+                      label={tab.label}
+                      isActive={activeTab === tab.id} 
+                      onClick={() => setActiveTab(tab.id)} 
+                    />
+                  ))}
+                </div>
+
+                <div className="border-t border-slate-100 pt-8 min-h-[300px]">
+                  {renderTabContent()} 
+                </div>
+                {/* Footer */}
+                <div className="flex justify-end gap-3 mt-12">
+                  <Button variant="outline" size="sm" onClick={onClose}>
+                    Close
+                  </Button>
+                  <Button 
+                    variant="primary" 
+                    size="sm" 
+                    leftIcon={ArrowTopRightOnSquareIcon}
+                    onClick={() => {}} 
+                    className='bg-black'
+                  >
+                    Open Full Project
+                  </Button>
                 </div>
               </DialogPanel>
             </TransitionChild>
