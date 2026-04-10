@@ -17,7 +17,7 @@ export const ProjectTitle = ({ name, isStarred = false, description, status }: {
       <div className={`pl-4 border-l-4 ${borderColor} min-w-0 flex-1`}>
         
         <div className="flex items-center gap-2">
-          <h3 className="text-lg font-bold text-slate-800 tracking-tight truncate">
+          <h3 className="text-lg text-slate-800 tracking-tight truncate">
             {name}
           </h3>
           {isStarred && (

@@ -9,16 +9,16 @@ import {
 } from "@heroicons/react/24/outline";
 import { StarIcon as StarSolid } from "@heroicons/react/24/solid";
 import { Fragment } from "react";
-import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/ui/Button";
 import { MenuActionItem } from "./MenuActionItem";
+import { useProjectFilters } from "../../hooks/useProjectFilter";
 
 interface ActionMenuProps {
   projectId: string;
 }
 
 export const ActionMenu = ({ projectId }: ActionMenuProps) => {
-  const navigate = useNavigate();
+  const { openModal } = useProjectFilters();
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -47,7 +47,7 @@ export const ActionMenu = ({ projectId }: ActionMenuProps) => {
             <MenuActionItem 
               icon={DocumentTextIcon} 
               label="View Details" 
-              onClick={() => navigate(`/projects/${projectId}`)} 
+              onClick={() => openModal(projectId)} 
             />
             <MenuActionItem icon={ClockIcon} label="View Timeline" />
             <MenuActionItem icon={StarSolid} label="Remove Star" iconClassName="text-yellow-500"/>

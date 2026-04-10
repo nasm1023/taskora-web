@@ -7,7 +7,7 @@ import { Menu, MenuButton } from '@headlessui/react';
 
 
 export const ProjectToolbar = () => {
-  const { view, updateFilters } = useProjectFilters();
+  const { view, setView } = useProjectFilters();
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5 bg-white p-2 border border-slate-100 shadow-sm">
@@ -26,7 +26,7 @@ export const ProjectToolbar = () => {
         <Button
           variant={view === 'grid' ? 'primary' : 'ghost'} 
           size="sm"
-          onClick={() => updateFilters({ view: 'grid' })}
+          onClick={() => setView('grid')}
           className={cn(
             "h-8 px-3", 
             view === 'grid' ? "bg-white text-black shadow-sm hover:bg-white" : "text-slate-400"
@@ -38,7 +38,7 @@ export const ProjectToolbar = () => {
         <Button
           variant={view === 'list' ? 'primary' : 'ghost'}
           size="sm"
-          onClick={() => updateFilters({ view: 'list' })}
+          onClick={() => setView('list' )}
           className={cn(
             "h-8 px-3",
             view === 'list' ? "bg-white text-black shadow-sm hover:bg-white" : "text-slate-400"

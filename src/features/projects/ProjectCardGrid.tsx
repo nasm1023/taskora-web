@@ -5,6 +5,7 @@ import { AvatarGroup } from '../../components/ui/AvatarGroup';
 import { ProjectTitle } from './ProjectTitle';
 import { ActionMenu } from './ActionMenu';
 import { cn } from '../../utils/cn';
+import { ProgressBar } from '../../components/ui/ProgressBar';
 
 interface ProjectCardProps {
   project: Project;
@@ -12,12 +13,6 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
-//   const actions = [
-//     { label: 'View Details', onClick: () => {} },
-//     { label: 'Mark as Completed', onClick: () => {} },
-//     { label: 'Archive Project', variant: 'danger', onClick: () => {} },
-//   ];
-
   return (
     <div className="w-full h-full bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
       <ProjectTitle 
@@ -32,7 +27,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           <CalendarIcon className="w-4 h-4" />
           <span>Deadline: {project.deadline}</span>
         </div>
-        <ActionMenu projectId={''} />
+        <ActionMenu projectId={project.id} />
       </div>
 
       <div className="mt-4">
@@ -41,10 +36,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           <span className="text-sm font-bold text-slate-800">{project.progress}%</span>
         </div>
         <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-          <div 
-            className="bg-slate-900 h-full transition-all duration-500" 
-            style={{ width: `${project.progress}%` }} 
-          />
+          <ProgressBar progress={project.progress} />
         </div>
       </div>
 
