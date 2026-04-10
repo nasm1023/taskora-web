@@ -11,7 +11,7 @@ export const Header = () => {
                 <BellIcon width={20} height={20}/>
                 <span className="absolute -top-[5px] -right-[5px] items-center w-2.5 h-2.5 bg-red-600 border-2 border-white rounded-full" />
             </div>
-            <Button leftIcon={PlusIcon} className="text-xs">New Project</Button>
+            <Button leftIcon={PlusIcon} className="text-xs hidden md:flex">New Project</Button>
             <Avatar src="https://i.pravatar.cc/150?u=1"></Avatar>
         </div>
     </header>

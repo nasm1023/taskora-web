@@ -15,7 +15,7 @@ const statusStyles: Record<string, string> = {
 
 const StatusBadge: React.FC<StatusBadgeProps> = ({ status, classname = "" }) => {
   return (
-    <span className={`px-3 py-1 rounded-full text-xs font-medium ${classname} ${statusStyles[status] || 'bg-gray-100 text-gray-600'}`}>
+    <span className={`px-3 py-1 rounded-full text-xs whitespace-nowrap font-medium ${classname} ${statusStyles[status] || 'bg-gray-100 text-gray-600'}`}>
       {status}
     </span>
   );
