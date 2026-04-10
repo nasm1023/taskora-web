@@ -1,6 +1,6 @@
 import { StarIcon as StarSolid } from '@heroicons/react/24/solid';
 import type { ProjectStatus } from "../../types/projects";
-import StatusBadge from '../../components/ui/StatusBadge';
+import { Avatar } from '../../components/ui/Avatar';
 
 const borderStyles: Record<string, string> = {
   'In Progress': 'border-yellow-400',
@@ -13,9 +13,8 @@ const borderStyles: Record<string, string> = {
 export const ProjectTitle = ({ name, isStarred = false, description, status }: {name: string, isStarred?: boolean, description: string, status: ProjectStatus }) => {
   const borderColor = borderStyles[status] || 'border-slate-200';
   return (
-    <div className="flex justify-between items-start mb-4 gap-4 w-full">
+    <div className="flex justify-between items-center mb-4 gap-4 w-full bg-slate-100/50 p-4 rounded-xl">
       <div className={`pl-4 border-l-4 ${borderColor} min-w-0 flex-1`}>
-        
         <div className="flex items-center gap-2">
           <h3 className="text-lg text-slate-800 tracking-tight truncate">
             {name}
@@ -29,9 +28,7 @@ export const ProjectTitle = ({ name, isStarred = false, description, status }: {
           {description}
         </p>
       </div>
-      <div className="shrink-0">
-        <StatusBadge status={status} />
-      </div>
+        <Avatar src='https://i.pravatar.cc/150?u=nam'/>
     </div>
   );
 };

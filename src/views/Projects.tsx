@@ -1,6 +1,6 @@
 import { MOCK_PROJECTS } from "../data/mockProject";
+import { ProjectDetailModal } from "../features/projects/components/ProjectDetailModal";
 import { ProjectCard } from "../features/projects/ProjectCardGrid";
-import { ProjectDetailModal } from "../features/projects/ProjectDetailModal";
 import { ProjectTable } from "../features/projects/ProjectTable";
 import { ProjectToolbar } from "../features/projects/ProjectToolbar";
 import { useProjectFilters } from "../hooks/useProjectFilter";
