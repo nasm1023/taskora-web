@@ -5,7 +5,7 @@ import {
   ClockIcon, 
   CheckCircleIcon,
   PauseCircleIcon,
-  TrashIcon
+  ExclamationTriangleIcon
 } from "@heroicons/react/24/outline";
 import { StarIcon as StarSolid } from "@heroicons/react/24/solid";
 import { Fragment } from "react";
@@ -37,7 +37,7 @@ export const ActionMenu = ({ projectId }: ActionMenuProps) => {
       >
         <MenuItems 
           anchor="bottom end" 
-          className="z-50 mt-2 w-60 origin-top-right rounded-xl bg-white p-1.5 shadow-xl ring-1 ring-black/5 focus:outline-none overflow-hidden"
+          className="z-50 mt-2 w-60 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black/5 focus:outline-none overflow-hidden"
         >
           <div className="px-4 py-2.5 text-sm font-bold text-slate-900">
             Project Actions
@@ -50,7 +50,7 @@ export const ActionMenu = ({ projectId }: ActionMenuProps) => {
               onClick={() => navigate(`/projects/${projectId}`)} 
             />
             <MenuActionItem icon={ClockIcon} label="View Timeline" />
-            <MenuActionItem icon={StarSolid} label="Remove Star" />
+            <MenuActionItem icon={StarSolid} label="Remove Star" iconClassName="text-yellow-500"/>
           </div>
 
           <div className="h-px bg-slate-100 my-1 mx-1" />
@@ -58,14 +58,14 @@ export const ActionMenu = ({ projectId }: ActionMenuProps) => {
           <div className="p-1 space-y-0.5">
             <MenuActionItem icon={ClockIcon} label="Change Status" />
             <MenuActionItem icon={CheckCircleIcon} label="Mark as Completed" />
-            <MenuActionItem icon={PauseCircleIcon} label="Put on Hold" />
+            <MenuActionItem icon={PauseCircleIcon} label="Put on Hold"/>
           </div>
 
           <div className="h-px bg-slate-100 my-1 mx-1" />
 
           <div className="p-1">
             <MenuActionItem 
-              icon={TrashIcon} 
+              icon={ExclamationTriangleIcon} 
               label="Archive Project" 
               variant="danger" 
             />
