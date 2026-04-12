@@ -12,6 +12,8 @@ import { TABS, type TabType } from '../../../types/tab';
 import { ProjectOverview } from './Overview';
 import { ProjectTasks } from './ProjectTask';
 import { ProjectTeam } from './ProjectTeam';
+import { ProjectDiscussion } from './ProjectDiscussion';
+import { ProjectAnalytics } from './ProjectAnalytics';
 
 interface Props {
   project: Project | null;
@@ -25,14 +27,16 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
 
   const renderTabContent = () => {
     switch (activeTab) {
-      case 'overview':
-       return <ProjectOverview/>
       case 'tasks':
         return <ProjectTasks/>
       case 'team':
         return <ProjectTeam/>
+      case 'discussions':
+        return <ProjectDiscussion/>
+      case 'analytics':
+        return <ProjectAnalytics/>
       default:
-        return <div className="p-10 text-center text-slate-400">Tính năng đang phát triển...</div>;
+        return <ProjectOverview/>;
     }
   };
 

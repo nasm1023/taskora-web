@@ -19,7 +19,44 @@ export const MOCK_PROJECTS: Project[] = [
     budget: '$50,000',
     startDate: '2024-06-01',
     priority: 'High',
-    isStarred: true
+    isStarred: true,
+    budgetUsed: '$32,500',
+    timeSpent: '42h 30m',
+    timeEstimate: '60h',
+    discussions: [
+    {
+      id: 'c1',
+      name: 'Jessica Chen',
+      image: 'https://i.pravatar.cc/150?u=jessica',
+      time: '2 days ago',
+      text: "I've updated the design files with the latest changes. Please review when you get a chance.",
+      replies: [
+        {
+          id: 'r1',
+          name: 'Ryan Park',
+          image: 'https://i.pravatar.cc/150?u=ryan',
+          time: '1 day ago',
+          text: "Thanks for the update! I'll take a look at them this afternoon."
+        }
+      ]
+    },
+    {
+      id: 'c2',
+      name: 'Alex Morgan',
+      image: 'https://i.pravatar.cc/150?u=alex',
+      time: 'Yesterday',
+      text: "The responsive layout is working well on mobile, but we need to fix some issues on tablet view.",
+      replies: [
+        {
+          id: 'r2',
+          name: 'Jessica Chen',
+          image: 'https://i.pravatar.cc/150?u=jessica',
+          time: '5 hours ago',
+          text: "I'll check the tablet view and fix those issues by tomorrow."
+        }
+      ]
+    }
+  ]
   },
   {
     id: 'PJ-002',
@@ -38,7 +75,44 @@ export const MOCK_PROJECTS: Project[] = [
     budget: '$15,000',
     startDate: '2024-10-20',
     priority: 'Medium',
-    isStarred: false
+    isStarred: false,
+    budgetUsed: '$32,500',
+    timeSpent: '42h 30m',
+    timeEstimate: '60h',
+    discussions: [
+    {
+      id: 'c1',
+      name: 'Jessica Chen',
+      image: 'https://i.pravatar.cc/150?u=jessica',
+      time: '2 days ago',
+      text: "I've updated the design files with the latest changes. Please review when you get a chance.",
+      replies: [
+        {
+          id: 'r1',
+          name: 'Ryan Park',
+          image: 'https://i.pravatar.cc/150?u=ryan',
+          time: '1 day ago',
+          text: "Thanks for the update! I'll take a look at them this afternoon."
+        }
+      ]
+    },
+    {
+      id: 'c2',
+      name: 'Alex Morgan',
+      image: 'https://i.pravatar.cc/150?u=alex',
+      time: 'Yesterday',
+      text: "The responsive layout is working well on mobile, but we need to fix some issues on tablet view.",
+      replies: [
+        {
+          id: 'r2',
+          name: 'Jessica Chen',
+          image: 'https://i.pravatar.cc/150?u=jessica',
+          time: '5 hours ago',
+          text: "I'll check the tablet view and fix those issues by tomorrow."
+        }
+      ]
+    }
+  ]
   },
   {
     id: 'PJ-003',
@@ -56,7 +130,44 @@ export const MOCK_PROJECTS: Project[] = [
     budget: '$85,000',
     startDate: '2024-01-15',
     priority: 'Low',
-    isStarred: true
+    isStarred: true,
+    budgetUsed: '$32,500',
+    timeSpent: '42h 30m',
+    timeEstimate: '60h',
+    discussions: [
+    {
+      id: 'c1',
+      name: 'Jessica Chen',
+      image: 'https://i.pravatar.cc/150?u=jessica',
+      time: '2 days ago',
+      text: "I've updated the design files with the latest changes. Please review when you get a chance.",
+      replies: [
+        {
+          id: 'r1',
+          name: 'Ryan Park',
+          image: 'https://i.pravatar.cc/150?u=ryan',
+          time: '1 day ago',
+          text: "Thanks for the update! I'll take a look at them this afternoon."
+        }
+      ]
+    },
+    {
+      id: 'c2',
+      name: 'Alex Morgan',
+      image: 'https://i.pravatar.cc/150?u=alex',
+      time: 'Yesterday',
+      text: "The responsive layout is working well on mobile, but we need to fix some issues on tablet view.",
+      replies: [
+        {
+          id: 'r2',
+          name: 'Jessica Chen',
+          image: 'https://i.pravatar.cc/150?u=jessica',
+          time: '5 hours ago',
+          text: "I'll check the tablet view and fix those issues by tomorrow."
+        }
+      ]
+    }
+  ]
   },
   {
     id: 'PJ-004',
@@ -76,6 +187,43 @@ export const MOCK_PROJECTS: Project[] = [
     budget: '$20,000',
     startDate: '2024-08-05',
     priority: 'Medium',
-    isStarred: false
+    isStarred: false,
+    budgetUsed: '$32,500',
+    timeSpent: '42h 30m',
+    timeEstimate: '60h',
+    discussions: [
+    {
+      id: 'c1',
+      name: 'Jessica Chen',
+      image: 'https://i.pravatar.cc/150?u=jessica',
+      time: '2 days ago',
+      text: "I've updated the design files with the latest changes. Please review when you get a chance.",
+      replies: [
+        {
+          id: 'r1',
+          name: 'Ryan Park',
+          image: 'https://i.pravatar.cc/150?u=ryan',
+          time: '1 day ago',
+          text: "Thanks for the update! I'll take a look at them this afternoon."
+        }
+      ]
+    },
+    {
+      id: 'c2',
+      name: 'Alex Morgan',
+      image: 'https://i.pravatar.cc/150?u=alex',
+      time: 'Yesterday',
+      text: "The responsive layout is working well on mobile, but we need to fix some issues on tablet view.",
+      replies: [
+        {
+          id: 'r2',
+          name: 'Jessica Chen',
+          image: 'https://i.pravatar.cc/150?u=jessica',
+          time: '5 hours ago',
+          text: "I'll check the tablet view and fix those issues by tomorrow."
+        }
+      ]
+    }
+  ]
   }
 ];

@@ -1,8 +1,6 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
-import { Button } from "../../../components/ui/Button";
 import { PROJECT_OVERVIEW_DATA } from "../../../data/mockProjectDetail";
-import { CheckBadgeIcon } from "@heroicons/react/24/outline";
 import { InfoItem } from "../../../components/ui/InfoItem";
+import { Button } from "../../../components/ui/Button";
 
 export const ProjectTeam = () => {
   return (
@@ -14,29 +12,16 @@ export const ProjectTeam = () => {
 
       <div className="space-y-3">
         {PROJECT_OVERVIEW_DATA.activities.map(task => (
-          <InfoItem 
-            key={task.id}
-            name={task.user}
-            text={task.action}
-            image={task.avatar}
-          />
+          <div className="flex justify-between bg-slate-100 p-2 mb-3 rounded-lg">
+            <InfoItem 
+              key={task.id}
+              name={task.user}
+              text={task.action}
+              image={task.avatar}
+            />
+            <Button variant="outline" className="bg-white"> View Profile</Button>
+          </div>
         ))}
-      </div>
-
-      {/* Footer Buttons */}
-      <div className="flex justify-end gap-3 mt-8">
-        <Button variant="outline" size="sm" leftIcon={CheckBadgeIcon}>
-          View All Tasks
-        </Button>
-        <Button 
-            variant="primary" 
-            size="sm" 
-            leftIcon={ArrowTopRightOnSquareIcon}
-            onClick={() => {}} 
-            className='bg-black'
-            >
-          Go to Kanban Board
-        </Button>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ interface InfoItemProps {
   text?: string;
   image: string;
   isUnread?: boolean;
+  variant?: 'default' | 'compact';
 }
 
 export const InfoItem: React.FC<InfoItemProps> = ({ 
@@ -11,8 +12,16 @@ export const InfoItem: React.FC<InfoItemProps> = ({
   time, 
   text, 
   image, 
-  isUnread = false 
-}) => (
+  isUnread = false,
+  variant = 'default'
+}) => {
+  const headerLayoutClass = variant === 'compact' 
+    ? 'flex items-baseline gap-2'
+    : 'flex justify-between items-baseline gap-2';
+  const textStyleClass = variant === 'compact'
+    ? 'text-slate-700' 
+    : 'text-slate-500';
+  return (
   <div className="flex items-start gap-3 cursor-pointer group">
     <div className="relative shrink-0">
       <img 
@@ -22,7 +31,7 @@ export const InfoItem: React.FC<InfoItemProps> = ({
       />
     </div>
     <div className="flex-1 min-w-0 text-left">
-      <div className="flex justify-between items-baseline gap-2">
+      <div className={headerLayoutClass}>
         <span className="text-sm font-semibold text-slate-800 group-hover:text-blue-600 transition-colors truncate">
           {name}
         </span>
@@ -33,10 +42,11 @@ export const InfoItem: React.FC<InfoItemProps> = ({
         <span className="items-center w-2.5 h-2.5 bg-blue-600 border-2 border-white rounded-full" />
       )}
       </div>
-      <p className="text-[12px] text-slate-500 truncate leading-tight mt-0.5">
+      <p className={`text-[12px] text-slate-500 truncate leading-tight mt-0.5 ${textStyleClass}`}>
         {text}
       </p>
 
     </div>
   </div>
-);
+  )
+};

@@ -16,4 +16,17 @@ export interface Project {
   startDate: string;
   priority?: ProjectPriority;
   isStarred?: boolean;
+  budgetUsed: string; 
+  timeSpent: string; 
+  timeEstimate: string;
+  discussions?: Comment[];
+}
+
+export interface Comment {
+  id: string;
+  name: string;
+  image: string;
+  time: string;
+  text: string;
+  replies?: Comment[];
 }
