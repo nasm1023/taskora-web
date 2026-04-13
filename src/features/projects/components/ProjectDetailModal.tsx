@@ -10,12 +10,12 @@ import { Button } from '../../../components/ui/Button';
 import { TabItem } from '../../../components/ui/TabItem';
 import { TABS, type TabType } from '../../../types/tab';
 import { ProjectOverview } from './overview';
-import { ProjectDiscussion } from './ProjectDiscussion';
 import { ProjectAnalytics } from './ProjectAnalytics';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router';
-import { ProjectTeam } from './team';
+import { ProjectTeam } from './team'; 
 import { ProjectTasks } from './tasks';
+import { ProjectDiscussion } from './discussions';
 
 interface Props {
   project: Project | null;
@@ -32,15 +32,15 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'tasks':
-        return <ProjectTasks />
+        return <ProjectTasks projectId={project.id} />
       case 'team':
-        return <ProjectTeam />
+        return <ProjectTeam projectId={project.id} />
       case 'discussions':
-        return <ProjectDiscussion />
+        return <ProjectDiscussion projectId={project.id} />
       case 'analytics':
         return <ProjectAnalytics />
       default:
-        return <ProjectOverview />;
+        return <ProjectOverview projectId={project.id} />;
     }
   };
 
@@ -99,8 +99,8 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
                   <InfoCard title="Team" content={<AvatarGroup users={project.members} size="md" max={5} />} subValue="3 team members" />
                   <InfoCard title="Dates" content={
                     <div className="text-sm space-y-1">
-                      <div className="flex gap-2"><CalendarIcon className="w-4 h-4" /> Start: {format(project.startDate, 'MMM d, yyyy')}</div>
-                      <div className="flex gap-2"><ClockIcon className="w-4 h-4" /> Deadline: {format(project.deadline, 'MMM d, yyyy')}</div>
+                      <div className="flex gap-2"><CalendarIcon className="w-4 h-4" /> Start: {project.startDate ? format(new Date(project.startDate), 'MMM d, yyyy') : 'N/A'}</div>
+                      <div className="flex gap-2"><ClockIcon className="w-4 h-4" /> Deadline: {project.deadline ? format(new Date(project.deadline), 'MMM d, yyyy') : 'N/A'}</div>
                     </div>
                   } />
                 </div>

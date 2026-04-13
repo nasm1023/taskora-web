@@ -1,0 +1,201 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "name": "Figma Design System",
+      "description": "UI component library for design system",
+      "isStarred": true,
+      "status": "In Progress",
+      "priority": "High",
+      "progress": 65,
+      "client": "Acme Inc.",
+      "budget": 12500,
+      "startDate": "Oct 1, 2023",
+      "deadline": "Nov 15, 2023",
+      "manager": { "name": "Alex Morgan", "avatar": "https://i.pravatar.cc/150?u=alex" },
+      "members": [
+        { "name": "Jessica Chen", "src": "https://i.pravatar.cc/150?u=jessica" },
+        { "name": "Alex Morgan", "src": "https://i.pravatar.cc/150?u=alex" },
+        { "name": "Ryan Park", "src": "https://i.pravatar.cc/150?u=ryan" },
+        { "name": "Lý Trường Nam", "src": "https://i.pravatar.cc/150?u=nam" }
+      ],
+      "tasksCount": 24,
+      "completedTasks": 16,
+      "activitiesCount": 128,
+      "goals": [
+        "Create a comprehensive design system",
+        "Implement responsive components",
+        "Ensure accessibility compliance",
+        "Develop documentation"
+      ],
+      "deliverables": [
+        "Component library",
+        "Style guide",
+        "Implementation examples",
+        "Technical documentation"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Keep React",
+      "description": "React component library development",
+      "isStarred": false,
+      "status": "Planning",
+      "priority": "Medium",
+      "progress": 25,
+      "client": "TechCorp",
+      "budget": 18000,
+      "startDate": "Oct 15, 2023",
+      "deadline": "Dec 5, 2023",
+      "teamAvatars": ["https://i.pravatar.cc/150?u=1", "https://i.pravatar.cc/150?u=2"],
+      "tasksCount": 18,
+      "completedTasks": 4,
+      "activitiesCount": 86,
+      "goals": [],
+      "deliverables": []
+    }
+  ],
+  "activities": [
+    { "id": "a1", "projectId": "1", "user": "Jessica Chen", "action": "updated the design files", "time": "Today at 10:30 AM", "avatar": "https://i.pravatar.cc/150?u=jessica" },
+    { "id": "a2", "projectId": "1", "user": "Alex Morgan", "action": "completed 3 tasks", "time": "Yesterday at 4:15 PM", "avatar": "https://i.pravatar.cc/150?u=alex" },
+    { "id": "a3", "projectId": "1", "user": "Ryan Park", "action": "added new comments", "time": "Yesterday at 2:30 PM", "avatar": "https://i.pravatar.cc/150?u=ryan" }
+  ],
+  "milestones": [
+    { "id": "m1", "projectId": "1", "title": "Design System Components", "due": "Due in 3 days", "color": "text-blue-600 bg-blue-100", "icon": "calendar" },
+    { "id": "m2", "projectId": "1", "title": "User Testing", "due": "Due in 1 week", "color": "text-yellow-600 bg-yellow-100", "icon": "test" }
+  ],
+  "timelines": [
+    { "id": "t1", "projectId": "1", "title": "Project Kickoff", "date": "Oct 1, 2023", "description": "Initial project setup, team assignment, and requirements gathering.", "status": "completed" },
+    { "id": "t2", "projectId": "1", "title": "Design Phase Completed", "date": "Oct 15, 2023", "description": "Finalized wireframes, mockups, and design specifications.", "status": "completed" },
+    { "id": "t3", "projectId": "1", "title": "Development Milestone", "date": "Nov 5, 2023", "description": "Core functionality implementation and initial testing.", "status": "current" }
+  ],
+  "attachments": [
+    { "id": "at1", "projectId": "1", "name": "project-requirements.pdf" },
+    { "id": "at2", "projectId": "1", "name": "design-mockups.fig" }
+  ],
+  "teamMembers": [
+    {
+      "id": 1,
+      "projectId": "1",
+      "name": "Alex Morgan",
+      "email": "alex@example.com",
+      "role": "Project Manager",
+      "tasks": 8,
+      "completedTasks": 5,
+      "status": "Active",
+      "avatar": "https://i.pravatar.cc/150?u=alex"
+    },
+    {
+      "id": 2,
+      "projectId": "1",
+      "name": "Jessica Chen",
+      "email": "jessica@example.com",
+      "role": "UI/UX Designer",
+      "tasks": 12,
+      "completedTasks": 7,
+      "status": "Active",
+      "avatar": "https://i.pravatar.cc/150?u=jessica"
+    },
+    {
+      "id": 3,
+      "projectId": "2",
+      "name": "Ryan Park",
+      "email": "ryan@example.com",
+      "role": "Frontend Developer",
+      "tasks": 10,
+      "completedTasks": 3,
+      "status": "Active",
+      "avatar": "https://i.pravatar.cc/150?u=ryan"
+    }
+  ],
+
+  "kanbanColumns": [
+    { "id": "todo", "title": "To Do" },
+    { "id": "in-progress", "title": "In Progress" },
+    { "id": "in-review", "title": "In Review" },
+    { "id": "done", "title": "Done" }
+  ],
+
+  "kanbanTasks": [
+    {
+      "id": "t1",
+      "projectId": "1",
+      "columnId": "todo",
+      "category": "Design System",
+      "title": "Create color palette",
+      "priority": "High",
+      "progress": 0,
+      "date": "Oct 5",
+      "attachments": 2,
+      "comments": 3,
+      "subtasks": "0/5",
+      "members": [{ "name": "Jessica", "src": "https://i.pravatar.cc/150?u=jessica" }]
+    },
+    {
+      "id": "t2",
+      "projectId": "1",
+      "columnId": "in-progress",
+      "category": "Development",
+      "title": "Build Button component",
+      "priority": "Medium",
+      "progress": 45,
+      "date": "Oct 10",
+      "attachments": 1,
+      "comments": 5,
+      "subtasks": "2/4",
+      "members": [{ "name": "Nam", "src": "https://i.pravatar.cc/150?u=nam" }]
+    },
+    {
+      "id": "t3",
+      "projectId": "2",
+      "columnId": "todo",
+      "category": "Setup",
+      "title": "Configure Tailwind CSS",
+      "priority": "High",
+      "progress": 10,
+      "date": "Oct 20",
+      "attachments": 0,
+      "comments": 0,
+      "subtasks": "0/2",
+      "members": [{ "name": "Ryan", "src": "https://i.pravatar.cc/150?u=ryan" }]
+    }
+  ],
+
+  "discussionData": [
+    {
+      "id": "d1",
+      "projectId": "1",
+      "activeThread": {
+        "title": "Standardizing Color Shades",
+        "author": "Jessica Chen",
+        "time": "3 days ago",
+        "status": "Active",
+        "comments": [
+          { "id": "c1", "name": "Jessica Chen", "time": "3 days ago", "avatar": "https://i.pravatar.cc/150?u=jessica", "text": "We need to finalize the primary blue shades." },
+          { "id": "c2", "name": "Alex Morgan", "time": "2 days ago", "avatar": "https://i.pravatar.cc/150?u=alex", "text": "Agreed, let's stick to the ones in the latest Figma file." }
+        ]
+      },
+      "recent": [
+        { "id": "r1", "title": "Typography Scale", "author": "Ryan Park", "time": "1 week ago", "status": "Resolved", "replies": 12 }
+      ],
+      "teamActivity": [
+        { "id": "a1", "user": "Jessica Chen", "action": "updated", "target": "Design Specs", "time": "2 hours ago", "avatar": "https://i.pravatar.cc/150?u=jessica" }
+      ]
+    },
+    {
+      "id": "d2",
+      "projectId": "2",
+      "activeThread": {
+        "title": "React 19 Compatibility",
+        "author": "Ryan Park",
+        "time": "Yesterday",
+        "status": "Needs Input",
+        "comments": [
+          { "id": "c3", "name": "Ryan Park", "time": "Yesterday", "avatar": "https://i.pravatar.cc/150?u=ryan", "text": "Should we start with React 19 stable?" }
+        ]
+      },
+      "recent": [],
+      "teamActivity": []
+    }
+  ]
+}

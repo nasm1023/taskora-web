@@ -6,6 +6,7 @@ import { ActionMenu } from './ActionMenu';
 import { cn } from '../../utils/cn';
 import { ProgressBar } from '../../components/ui/ProgressBar';
 import { InfoBlock } from '../../components/ui/InfoBlock';
+import { format } from 'date-fns';
 
 interface ProjectCardProps {
   project: Project;
@@ -18,7 +19,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       <ProjectTitle
         name={project.name}
         isStarred={project.isStarred}
-        description={project.description}
+        description={project.description || ""}
         status={project.status}
       />
 
@@ -58,7 +59,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       <div className="grid grid-cols-2 gap-y-4 mt-4 pt-3 rounded-xl border-t border-slate-100">
         <InfoBlock label="Client" value={project.client} />
         <InfoBlock label="Budget" value={project.budget} />
-        <InfoBlock label="Start Date" value={project.startDate} />
+        <InfoBlock label="Start Date" value={project.startDate ? format(new Date(project.startDate), 'MMM d, yyyy') : 'N/A'} />
         <InfoBlock
           label="Priority"
           value={

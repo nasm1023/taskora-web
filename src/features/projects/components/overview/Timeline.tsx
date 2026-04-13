@@ -1,14 +1,17 @@
-import { PROJECT_OVERVIEW_DATA } from "../../../../data/mockProjectDetail";
+import type { TimelineItem } from "../../../../types/projects";
 import { cn } from "../../../../utils/cn";
 
+interface TimelineProps {
+    timelines?: TimelineItem[];
+}
 
-export const Timeline = () => (
+export const Timeline = ({ timelines = [] }: TimelineProps) => (
     <section className="bg-white border border-slate-100 p-8 rounded-3xl shadow-sm">
         <h3 className="text-xl font-bold text-slate-900 mb-1">Project Timeline</h3>
         <p className="text-slate-400 text-sm mb-8">Key milestones and deadlines</p>
 
         <div className="space-y-0">
-            {PROJECT_OVERVIEW_DATA.timeline.map((item, index) => (
+            {timelines.map((item, index) => (
                 <div key={item.id} className="flex gap-4">
                     <div className="flex flex-col items-center">
                         <div className={cn(
@@ -16,7 +19,7 @@ export const Timeline = () => (
                             item.status === 'completed' ? "bg-green-500" :
                                 item.status === 'current' ? "bg-yellow-400" : "bg-slate-200"
                         )} />
-                        {index !== PROJECT_OVERVIEW_DATA.timeline.length - 1 && (
+                        {index !== timelines.length - 1 && (
                             <div className="w-px h-full bg-slate-100 my-1 min-h-[50px]" />
                         )}
                     </div>

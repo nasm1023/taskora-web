@@ -11,7 +11,7 @@ interface AvatarGroupProps {
 }
 
 export const AvatarGroup: React.FC<AvatarGroupProps> = ({
-  users,
+  users = [],
   max = 3,
   size = 'md',
   className

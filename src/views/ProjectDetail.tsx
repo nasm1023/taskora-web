@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { MOCK_PROJECTS } from "../data/mockProject";
 import { InfoCard } from "../components/ui/InfoCard";
 import { AvatarGroup } from "../components/ui/AvatarGroup";
 import { ProgressBar } from "../components/ui/ProgressBar";
@@ -7,32 +6,37 @@ import { ProjectTitle } from "../features/projects/ProjectTitle";
 import StatusBadge from "../components/ui/StatusBadge";
 import { TABS, type TabType } from "../types/tab";
 import { useState } from "react";
-import { ProjectDiscussion } from "../features/projects/components/ProjectDiscussion";
 import { ProjectAnalytics } from "../features/projects/components/ProjectAnalytics";
 import { ProjectOverview } from "../features/projects/components/overview";
 import { TabItem } from "../components/ui/TabItem";
 import { ProjectTeam } from "../features/projects/components/team";
 import { ProjectTasks } from "../features/projects/components/tasks";
+import { ProjectDiscussion } from "../features/projects/components/discussions";
+import { useProjectDetail } from "../hooks/useProjectDetail";
+import { LoadingState } from "../components/ui/LoadingState";
+import { ErrorState } from "../components/ui/ErrorState";
 
 export const ProjectDetailPage = () => {
   const { projectId } = useParams();
   const [activeTab, setActiveTab] = useState<TabType>('overview')
+  const { project, loading, error, refetch } = useProjectDetail(projectId)
 
-  const project = MOCK_PROJECTS.find((p) => p.id == projectId)
-  if (!project) return null;
+  if (loading) return <LoadingState message="Đang tải danh sách dự án..." />;
+  if (error) return <ErrorState message={error.message} onRetry={refetch} />;
+  if (!project) return <div className="p-8 text-red-500">Không tìm thấy dự án!</div>;
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 'tasks':
-        return <ProjectTasks variant="full" />
+        return <ProjectTasks projectId={projectId!} variant="full" />
       case 'team':
-        return <ProjectTeam variant="full" />
+        return <ProjectTeam projectId={projectId!} variant="full" />
       case 'discussions':
-        return <ProjectDiscussion />
+        return <ProjectDiscussion projectId={projectId!} variant="full" />
       case 'analytics':
         return <ProjectAnalytics />
       default:
-        return <ProjectOverview variant="full" />;
+        return <ProjectOverview projectId={projectId!} variant="full" />;
     }
   };
 
@@ -43,7 +47,7 @@ export const ProjectDetailPage = () => {
           <ProjectTitle
             name={project.name}
             isStarred={project.isStarred}
-            description={project.description}
+            description={project.description || ""}
             status={project.status}
             deadline="Nov 15, 2023"
             startDate="Oct 1, 2023"

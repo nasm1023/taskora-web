@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowTopRightOnSquareIcon, CheckBadgeIcon, ViewColumnsIcon, ListBulletIcon, CalendarDaysIcon, FunnelIcon, ArrowsUpDownIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
 import { Button } from "../../../../components/ui/Button";
 import { ProjectTitle } from "../../ProjectTitle";
-import { KANBAN_DATA } from "../../../../data/mockProjectDetail";
 import { cn } from "../../../../utils/cn";
 import { KanbanColumn } from "./Column";
-import type { TaskViewType } from "../../../../types/projects";
+import type { KanbanColumnType, KanbanTask, TaskViewType } from "../../../../types/projects";
+import { projectService } from "../../../../api/services/projectService";
 
 interface ProjectTasksProps {
   variant?: 'modal' | 'full';
+  projectId: string;
 }
 
 const VIEW_OPTIONS: { id: TaskViewType; label: string; icon: React.ElementType }[] = [
@@ -17,8 +18,38 @@ const VIEW_OPTIONS: { id: TaskViewType; label: string; icon: React.ElementType }
   { id: 'calendar', label: 'Calendar', icon: CalendarDaysIcon },
 ];
 
-export const ProjectTasks = ({ variant = 'modal' }: ProjectTasksProps) => {
+export const ProjectTasks = ({ variant = 'modal', projectId }: ProjectTasksProps) => {
   const [taskView, setTaskView] = useState<TaskViewType>('board');
+  const [tasks, setTasks] = useState<KanbanTask[]>([]);
+  const [columns, setColumns] = useState<KanbanColumnType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchKanbanData = async () => {
+      console.log("te");
+
+      if (!projectId) return;
+      try {
+        setLoading(true);
+        const [colsData, tasksData] = await Promise.all([
+          projectService.getKanbanColumns(),
+          projectService.getKanbanTasks(projectId)
+        ]);
+        console.log(colsData, tasksData);
+
+        setColumns(colsData);
+        setTasks(tasksData);
+      } catch (error) {
+        console.error("Lỗi fetch Kanban:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchKanbanData();
+  }, [projectId]);
+
+  if (loading) return <div className="p-10 text-center animate-pulse text-slate-400">Loading Kanban Board...</div>;
 
   if (variant === 'modal') {
     return (
@@ -29,7 +60,7 @@ export const ProjectTasks = ({ variant = 'modal' }: ProjectTasksProps) => {
         </div>
 
         <div className="space-y-3">
-          {KANBAN_DATA.tasks.slice(0, 3).map(task => (
+          {tasks.slice(0, 3).map(task => (
             <ProjectTitle
               key={task.id}
               name={task.title}
@@ -86,8 +117,8 @@ export const ProjectTasks = ({ variant = 'modal' }: ProjectTasksProps) => {
       {/* 2. BOARD AREA */}
       {taskView === 'board' && (
         <div className="flex gap-6 overflow-x-auto pb-4 h-[calc(100vh-250px)] items-start">
-          {KANBAN_DATA.columns.map(column => {
-            const columnTasks = KANBAN_DATA.tasks.filter(t => t.columnId === column.id);
+          {columns.map(column => {
+            const columnTasks = tasks.filter(t => t.columnId === column.id);
             return <KanbanColumn key={column.id} column={column} tasks={columnTasks} />;
           })}
         </div>

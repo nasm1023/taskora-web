@@ -1,8 +1,8 @@
 import { Menu, MenuButton, MenuItems, Transition } from "@headlessui/react";
-import { 
-  EllipsisHorizontalIcon, 
-  DocumentTextIcon, 
-  ClockIcon, 
+import {
+  EllipsisHorizontalIcon,
+  DocumentTextIcon,
+  ClockIcon,
   CheckCircleIcon,
   PauseCircleIcon,
   ExclamationTriangleIcon
@@ -35,8 +35,8 @@ export const ActionMenu = ({ projectId }: ActionMenuProps) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <MenuItems 
-          anchor="bottom end" 
+        <MenuItems
+          anchor="bottom end"
           className="z-50 mt-2 w-60 origin-top-right rounded-xl bg-white shadow-xl ring-1 ring-black/5 focus:outline-none overflow-hidden"
         >
           <div className="px-4 py-2.5 text-sm font-bold text-slate-900">
@@ -44,13 +44,13 @@ export const ActionMenu = ({ projectId }: ActionMenuProps) => {
           </div>
 
           <div className="p-1 space-y-0.5">
-            <MenuActionItem 
-              icon={DocumentTextIcon} 
-              label="View Details" 
-              onClick={() => openModal(projectId)} 
+            <MenuActionItem
+              icon={DocumentTextIcon}
+              label="View Details"
+              onClick={() => openModal(projectId)}
             />
             <MenuActionItem icon={ClockIcon} label="View Timeline" />
-            <MenuActionItem icon={StarSolid} label="Remove Star" iconClassName="text-yellow-500"/>
+            <MenuActionItem icon={StarSolid} label="Remove Star" iconClassName="text-yellow-500" />
           </div>
 
           <div className="h-px bg-slate-100 my-1 mx-1" />
@@ -58,16 +58,16 @@ export const ActionMenu = ({ projectId }: ActionMenuProps) => {
           <div className="p-1 space-y-0.5">
             <MenuActionItem icon={ClockIcon} label="Change Status" />
             <MenuActionItem icon={CheckCircleIcon} label="Mark as Completed" />
-            <MenuActionItem icon={PauseCircleIcon} label="Put on Hold"/>
+            <MenuActionItem icon={PauseCircleIcon} label="Put on Hold" />
           </div>
 
           <div className="h-px bg-slate-100 my-1 mx-1" />
 
           <div className="p-1">
-            <MenuActionItem 
-              icon={ExclamationTriangleIcon} 
-              label="Archive Project" 
-              variant="danger" 
+            <MenuActionItem
+              icon={ExclamationTriangleIcon}
+              label="Archive Project"
+              variant="danger"
             />
           </div>
         </MenuItems>
