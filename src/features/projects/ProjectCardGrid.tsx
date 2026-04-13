@@ -1,11 +1,11 @@
-import React from 'react';
-import {  CalendarIcon, ClipboardDocumentListIcon, ChartBarIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, ClipboardDocumentListIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 import type { Project } from '../../types/projects';
 import { AvatarGroup } from '../../components/ui/AvatarGroup';
 import { ProjectTitle } from './ProjectTitle';
 import { ActionMenu } from './ActionMenu';
 import { cn } from '../../utils/cn';
 import { ProgressBar } from '../../components/ui/ProgressBar';
+import { InfoBlock } from '../../components/ui/InfoBlock';
 
 interface ProjectCardProps {
   project: Project;
@@ -15,9 +15,9 @@ interface ProjectCardProps {
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div className="w-full h-full bg-white rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
-      <ProjectTitle 
-        name={project.name} 
-        isStarred={project.isStarred} 
+      <ProjectTitle
+        name={project.name}
+        isStarred={project.isStarred}
         description={project.description}
         status={project.status}
       />
@@ -59,8 +59,8 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         <InfoBlock label="Client" value={project.client} />
         <InfoBlock label="Budget" value={project.budget} />
         <InfoBlock label="Start Date" value={project.startDate} />
-        <InfoBlock 
-          label="Priority" 
+        <InfoBlock
+          label="Priority"
           value={
             <span className={cn(
               "px-2 py-0.5 rounded-xl text-[10px] font-semibold uppercase",
@@ -68,16 +68,10 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             )}>
               {project.priority}
             </span>
-          } 
+          }
         />
       </div>
     </div>
   );
 };
 
-const InfoBlock = ({ label, value }: { label: string; value: React.ReactNode }) => (
-  <div className="text-left">
-    <p className="text-[11px] text-slate-400 uppercase tracking-wider">{label}</p>
-    <div className="text-sm text-slate-800">{value}</div>
-  </div>
-);

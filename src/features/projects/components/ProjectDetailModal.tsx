@@ -9,11 +9,13 @@ import { ProgressBar } from '../../../components/ui/ProgressBar';
 import { Button } from '../../../components/ui/Button';
 import { TabItem } from '../../../components/ui/TabItem';
 import { TABS, type TabType } from '../../../types/tab';
-import { ProjectOverview } from './Overview';
-import { ProjectTasks } from './ProjectTask';
-import { ProjectTeam } from './ProjectTeam';
+import { ProjectOverview } from './overview';
 import { ProjectDiscussion } from './ProjectDiscussion';
 import { ProjectAnalytics } from './ProjectAnalytics';
+import { format } from 'date-fns';
+import { useNavigate } from 'react-router';
+import { ProjectTeam } from './team';
+import { ProjectTasks } from './tasks';
 
 interface Props {
   project: Project | null;
@@ -23,20 +25,22 @@ interface Props {
 
 export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
   const [activeTab, setActiveTab] = useState<TabType>('overview')
+  const navigate = useNavigate();
+
   if (!project) return null;
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 'tasks':
-        return <ProjectTasks/>
+        return <ProjectTasks />
       case 'team':
-        return <ProjectTeam/>
+        return <ProjectTeam />
       case 'discussions':
-        return <ProjectDiscussion/>
+        return <ProjectDiscussion />
       case 'analytics':
-        return <ProjectAnalytics/>
+        return <ProjectAnalytics />
       default:
-        return <ProjectOverview/>;
+        return <ProjectOverview />;
     }
   };
 
@@ -95,8 +99,8 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
                   <InfoCard title="Team" content={<AvatarGroup users={project.members} size="md" max={5} />} subValue="3 team members" />
                   <InfoCard title="Dates" content={
                     <div className="text-sm space-y-1">
-                      <div className="flex gap-2"><CalendarIcon className="w-4 h-4" /> Start: Oct 1, 2023</div>
-                      <div className="flex gap-2"><ClockIcon className="w-4 h-4" /> Deadline: Nov 15, 2023</div>
+                      <div className="flex gap-2"><CalendarIcon className="w-4 h-4" /> Start: {format(project.startDate, 'MMM d, yyyy')}</div>
+                      <div className="flex gap-2"><ClockIcon className="w-4 h-4" /> Deadline: {format(project.deadline, 'MMM d, yyyy')}</div>
                     </div>
                   } />
                 </div>
@@ -108,25 +112,28 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
                       key={tab.id}
                       icon={tab.icon}
                       label={tab.label}
-                      isActive={activeTab === tab.id} 
-                      onClick={() => setActiveTab(tab.id)} 
+                      isActive={activeTab === tab.id}
+                      onClick={() => setActiveTab(tab.id)}
                     />
                   ))}
                 </div>
 
                 <div className="min-h-[300px]">
-                  {renderTabContent()} 
+                  {renderTabContent()}
                 </div>
                 {/* Footer */}
                 <div className="flex justify-end gap-3 mt-12">
                   <Button variant="outline" size="sm" onClick={onClose}>
                     Close
                   </Button>
-                  <Button 
-                    variant="primary" 
-                    size="sm" 
+                  <Button
+                    variant="primary"
+                    size="sm"
                     leftIcon={ArrowTopRightOnSquareIcon}
-                    onClick={() => {}} 
+                    onClick={() => {
+                      onClose();
+                      navigate(`projects/${project.id}`)
+                    }}
                     className='bg-black'
                   >
                     Open Full Project
