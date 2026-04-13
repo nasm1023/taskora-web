@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowTopRightOnSquareIcon, CheckBadgeIcon, ViewColumnsIcon, ListBulletIcon, CalendarDaysIcon, FunnelIcon, ArrowsUpDownIcon, Squares2X2Icon } from "@heroicons/react/24/outline";
 import { Button } from "../../../../components/ui/Button";
 import { ProjectTitle } from "../../ProjectTitle";
 import { cn } from "../../../../utils/cn";
 import { KanbanColumn } from "./Column";
-import type { KanbanColumnType, KanbanTask, TaskViewType } from "../../../../types/projects";
-import { projectService } from "../../../../api/services/projectService";
+import type { TaskViewType } from "../../../../types/projects";
+import { LoadingState } from "../../../../components/ui/LoadingState";
+import { ErrorState } from "../../../../components/ui/ErrorState";
+import { useProjectTasks } from "../../../../hooks/useProjectTask";
 
 interface ProjectTasksProps {
   variant?: 'modal' | 'full';
@@ -20,37 +22,10 @@ const VIEW_OPTIONS: { id: TaskViewType; label: string; icon: React.ElementType }
 
 export const ProjectTasks = ({ variant = 'modal', projectId }: ProjectTasksProps) => {
   const [taskView, setTaskView] = useState<TaskViewType>('board');
-  const [tasks, setTasks] = useState<KanbanTask[]>([]);
-  const [columns, setColumns] = useState<KanbanColumnType[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { tasks, columns, loading, error, refetch } = useProjectTasks(projectId);
 
-  useEffect(() => {
-    const fetchKanbanData = async () => {
-      console.log("te");
-
-      if (!projectId) return;
-      try {
-        setLoading(true);
-        const [colsData, tasksData] = await Promise.all([
-          projectService.getKanbanColumns(),
-          projectService.getKanbanTasks(projectId)
-        ]);
-        console.log(colsData, tasksData);
-
-        setColumns(colsData);
-        setTasks(tasksData);
-      } catch (error) {
-        console.error("Lỗi fetch Kanban:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchKanbanData();
-  }, [projectId]);
-
-  if (loading) return <div className="p-10 text-center animate-pulse text-slate-400">Loading Kanban Board...</div>;
-
+  if (loading) return <LoadingState message="Đang sắp xếp công việc..." />;
+  if (error) return <ErrorState message={error.message} onRetry={refetch} />;
   if (variant === 'modal') {
     return (
       <section className="bg-white border border-slate-100 p-8 rounded-3xl shadow-sm">

@@ -47,3 +47,6 @@ npm install
 
 3. Chạy dự án
 npm run dev
+
+4. Test api
+npm run mock

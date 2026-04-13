@@ -2,9 +2,9 @@ import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24/outline";
 import { Button } from "../../../../components/ui/Button";
 import { DiscussionThread } from "./DiscussionThread";
 import { DiscussionSidebar } from "./DiscussionSidebar";
-import { useEffect, useState } from "react";
-import { projectService } from "../../../../api/services/projectService";
-import type { DiscussionData } from "../../../../types/projects";
+import { useProjectDiscussion } from "../../../../hooks/useProjectDiscussion";
+import { LoadingState } from "../../../../components/ui/LoadingState";
+import { ErrorState } from "../../../../components/ui/ErrorState";
 
 interface ProjectDiscussionProps {
     variant?: 'modal' | 'full';
@@ -12,28 +12,12 @@ interface ProjectDiscussionProps {
 }
 
 export const ProjectDiscussion = ({ variant = 'modal', projectId }: ProjectDiscussionProps) => {
-    const [data, setData] = useState<DiscussionData | null>(null);
-    const [loading, setLoading] = useState(true);
+    const { data, loading, error, refetch } = useProjectDiscussion(projectId);
 
-    useEffect(() => {
-        const fetchDiscussions = async () => {
-            if (!projectId) return;
-            try {
-                setLoading(true);
-                const res = await projectService.getDiscussions(projectId);
-                setData(Array.isArray(res) ? res[0] : res);
-            } catch (err) {
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchDiscussions();
-    }, [projectId]);
+    if (loading) return <LoadingState message="Đang tải các cuộc hội thoại..." />;
+    if (error) return <ErrorState message={error.message} onRetry={refetch} />;
+    if (!data) return <div className="p-10 text-slate-400">Chưa có thảo luận nào.</div>;
 
-    if (loading) return <div className="p-10 animate-pulse text-slate-400">Loading conversations...</div>;
-    if (!data) return <div className="p-10 text-slate-400">No discussions yet.</div>;
-    // BẢN POPUP
     if (variant === 'modal') {
         return (
             <section className="bg-white border border-slate-100 p-8 rounded-3xl shadow-sm">

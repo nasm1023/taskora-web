@@ -5,7 +5,7 @@ import { Timeline } from "./Timeline";
 import { ActivitySection } from "./Activity";
 import { MileStone } from "./MileStone";
 import { LoadingState } from "../../../../components/ui/LoadingState";
-import { useProjectOverview } from "../../../../hooks/userProjectOverview";
+import { useProjectOverview } from "../../../../hooks/useProjectOverview";
 import { ErrorState } from "../../../../components/ui/ErrorState";
 
 interface ProjectOverviewProps {

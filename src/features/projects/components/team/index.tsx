@@ -2,9 +2,9 @@ import { Button } from "../../../../components/ui/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { TeamMemberTable } from "./TeamMemberTable";
 import { TeamMemberList } from "./TeamMemberList";
-import { useEffect, useState } from "react";
-import type { TeamMember } from "../../../../types/projects";
-import { projectService } from "../../../../api/services/projectService";
+import { LoadingState } from "../../../../components/ui/LoadingState";
+import { ErrorState } from "../../../../components/ui/ErrorState";
+import { useProjectTeam } from "../../../../hooks/useProjectTeam";
 
 interface ProjectTeamProps {
     variant?: 'modal' | 'full';
@@ -12,27 +12,12 @@ interface ProjectTeamProps {
 }
 
 export const ProjectTeam = ({ variant = 'modal', projectId }: ProjectTeamProps) => {
-    const [members, setMembers] = useState<TeamMember[]>([]);
-    const [loading, setLoading] = useState(true);
+    const { members, loading, error, refetch } = useProjectTeam(projectId);
 
-    useEffect(() => {
-        const fetchTeam = async () => {
-            if (!projectId) return;
-            try {
-                setLoading(true);
-                const data = await projectService.getTeamMembers(projectId);
-                setMembers(data);
-            } catch (error) {
-                console.error("Lỗi fetch team:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+    if (loading) return <LoadingState message="Đang tìm kiếm đồng đội..." />;
 
-        fetchTeam();
-    }, [projectId]);
+    if (error) return <ErrorState message={error.message} onRetry={refetch} />;
 
-    if (loading) return <div className="p-8 text-center text-slate-400 italic">Đang tải danh sách thành viên...</div>;
     if (variant === 'full') {
         return (
             <div className="space-y-6 animate-in fade-in duration-500">
