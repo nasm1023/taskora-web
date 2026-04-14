@@ -9,11 +9,16 @@ import { ErrorState } from "../components/ui/ErrorState";
 
 export const ProjectsPage = () => {
   const { view, selectedProjectId, closeModal } = useProjectFilters();
-  const { projects, loading, error, refetch } = useProjects();
+  const {
+    data: projects = [],
+    isLoading,
+    error,
+    refetch
+  } = useProjects();
 
-  if (loading) return <LoadingState message="Đang tải danh sách dự án..." />;
+  if (isLoading) return <LoadingState message="Đang tải danh sách dự án..." />;
 
-  if (error) return <ErrorState message={error.message} onRetry={refetch} />;
+  if (error) return <ErrorState message={error.message} onRetry={() => refetch()} />;
 
   const selectedProject = projects.find(p => p.id === selectedProjectId);
   return (
