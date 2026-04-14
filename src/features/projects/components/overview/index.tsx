@@ -4,21 +4,14 @@ import { SidebarDetails } from "./Sidebar";
 import { Timeline } from "./Timeline";
 import { ActivitySection } from "./Activity";
 import { MileStone } from "./MileStone";
-import { LoadingState } from "../../../../components/ui/LoadingState";
-import { useProjectOverview } from "../../../../hooks/useProjectOverview";
-import { ErrorState } from "../../../../components/ui/ErrorState";
+import type { FullProjectData } from "../../../../types/projects";
 
 interface ProjectOverviewProps {
   variant?: 'modal' | 'full';
-  projectId: string;
+  data: FullProjectData;
 }
 
-export const ProjectOverview = ({ variant = 'modal', projectId }: ProjectOverviewProps) => {
-  const { data, loading, error, refetch } = useProjectOverview(projectId);
-
-  if (loading) return <LoadingState message="Đang tải thông tin dự án..." />;
-
-  if (error) return <ErrorState message={error.message} onRetry={refetch} />;
+export const ProjectOverview = ({ variant = 'modal', data }: ProjectOverviewProps) => {
 
   if (!data) return <div className="p-8 text-center">Không tìm thấy dữ liệu dự án!</div>;
 

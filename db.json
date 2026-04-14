@@ -197,5 +197,23 @@
       "recent": [],
       "teamActivity": []
     }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "Lý Trường Nam",
+      "email": "nam@c.com",
+      "password": "123", 
+      "avatar": "https://i.pravatar.cc/150?u=nam",
+      "role": "student"
+    },
+    {
+      "id": "2",
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "123",
+      "avatar": "https://i.pravatar.cc/150?u=admin",
+      "role": "admin"
+    }
   ]
 }

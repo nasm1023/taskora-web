@@ -36,7 +36,7 @@ export const ProjectDetailPage = () => {
       case 'analytics':
         return <ProjectAnalytics />
       default:
-        return <ProjectOverview projectId={projectId!} variant="full" />;
+        return <ProjectOverview data={project} variant="full" />;
     }
   };
 

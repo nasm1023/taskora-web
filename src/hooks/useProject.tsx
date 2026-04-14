@@ -34,7 +34,7 @@ export const useProjects = () => {
 
     useEffect(() => {
         fetchProjects();
-    }, []);
+    }, [fetchProjects]);
 
     return { projects, loading, error, refetch: fetchProjects };
 };
