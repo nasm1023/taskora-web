@@ -13,7 +13,7 @@ import { ProjectOverview } from './overview';
 import { ProjectAnalytics } from './ProjectAnalytics';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router';
-import { ProjectTeam } from './team'; 
+import { ProjectTeam } from './team';
 import { ProjectTasks } from './tasks';
 import { ProjectDiscussion } from './discussions';
 
@@ -40,7 +40,7 @@ export const ProjectDetailModal = ({ project, isOpen, onClose }: Props) => {
       case 'analytics':
         return <ProjectAnalytics />
       default:
-        return <ProjectOverview projectId={project.id} />;
+        return <ProjectOverview data={project} />;
     }
   };
 
