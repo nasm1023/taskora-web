@@ -18,6 +18,20 @@ const axiosInstance = axios.create({
 //     (error) => Promise.reject(error)
 // );
 
+// axiosInstance.interceptors.response.use(
+//     (response) => response.data,
+//     (error) => {
+//         if (error.response && error.response.status === 401) {
+//             console.error("Token không hợp lệ hoặc hết hạn. Đang đăng xuất...");
+
+//             localStorage.removeItem('token');
+
+//             window.location.href = '/login';
+//         }
+//         return Promise.reject(error);
+//     }
+// );
+
 axiosInstance.interceptors.response.use(
     (response) => response.data,
     (error) => Promise.reject(error)
